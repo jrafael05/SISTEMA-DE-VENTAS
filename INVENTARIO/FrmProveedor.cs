@@ -134,10 +134,10 @@ namespace INVENTARIO
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -164,6 +164,15 @@ namespace INVENTARIO
         {
             Proveedor entidad = new Proveedor();
             ProveedorBL actualizar = new ProveedorBL();
+
+            if (string.IsNullOrWhiteSpace(TxCodigo.Text))
+            {
+                MessageBox.Show("Debe seleccionar un registro valido antes de actualizar." +
+                " Por favor seleccione un registro en la pestaña de busqueda que desea actualizar "
+                  + "y vuelva a intentarlo.", "Error de Actualización",
+                  MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
 
             if (ID < 1)
             {
@@ -208,10 +217,10 @@ namespace INVENTARIO
                     DgConsulta.DataSource = busqueda.BusquedaProveedor(TxtBuscar.Text, "DESC_PRODUCTO");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void PaginarProveedor()
@@ -233,7 +242,11 @@ namespace INVENTARIO
                 tabProveedor.SelectTab(0);
             }
 
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void DgConsulta_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -273,10 +286,10 @@ namespace INVENTARIO
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         }

@@ -18,30 +18,32 @@ namespace INVENTARIO
         int Proximo;
 
         private static bool modificar = false;
-        public string _usuario;
+        string _usuario;
         public FrmMovimiento()
         {
             InitializeComponent();
             LlenarCombo();
+         
            
         }
 
 
-        public FrmMovimiento(string sesion)
+        public FrmMovimiento(string reponsable)
         {
             InitializeComponent();
-            _usuario = sesion;
+            _usuario = reponsable;
             LlenarCombo();
+           
         }
 
         private static FrmMovimiento frmInstance = null;
 
-        public static FrmMovimiento Instance()
+        public static FrmMovimiento Instance(string _responsable)
         {
             if (((frmInstance == null)
                         || (frmInstance.IsDisposed == true)))
             {
-                frmInstance = new FrmMovimiento();
+                frmInstance = new FrmMovimiento(_responsable);
                 
             }
             else
@@ -101,21 +103,20 @@ namespace INVENTARIO
 
         private void FrmCotizacion_Load(object sender, EventArgs e)
         {
-            
-            //MovimientoBL m = new MovimientoBL();
-            //DataRow row = m.ObtenerID().Rows[0];
-
-            //dg_pedidos.DataSource = m.ObtenerID();
-            //MessageBox.Show(row["ID1"].ToString());
+                       
             try
             {
                 LlenarGrid();
+                //Txt_Responsable.Text = "Admin";
+                ObtenerNumero();
+                txt_NoDocumento.Text = Proximo.ToString();
+                
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -131,9 +132,10 @@ namespace INVENTARIO
         {
             bool valor = false;
 
-            if (!string.IsNullOrWhiteSpace(Txt_Responsable.Text)
-                && !string.IsNullOrWhiteSpace(Txt_Memo.Text)
+            if (!string.IsNullOrWhiteSpace(Txt_Memo.Text)
                 && !string.IsNullOrWhiteSpace(Cb_Tipo.Text)
+                && (dg_Detalle.Rows.Count > 0)
+                
                 && !string.IsNullOrWhiteSpace(CmbProveedor.Text))
             {
                 valor = true;
@@ -259,11 +261,13 @@ namespace INVENTARIO
                                         entidadess.id_movimiento = _IdMov;
                                         pr.RegDetalleMovimiento(entidadess);
                                         pro.ActualizarEstado(entidadess.cantidad, entidadess.id_Producto);
+                                        //pro.ActualizarCambio(entidades.estado, _IdMov);
                                     }
                                     else
                                     {
                                         pro.RegMovimiento(entidades, entidadess);
                                         pro.ActualizarEstado(entidadess.cantidad, entidadess.id_Producto);
+                                        pro.ActualizarCambio("Aprovado", Convert.ToInt16(txt_NoDocumento.Text));
                                     }
 
                                 }
@@ -273,13 +277,12 @@ namespace INVENTARIO
                             MessageBox.Show("Registro agregado con exito.", "Agregado", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
                             BtNuevo.PerformClick();
+                            return;
                         }
-                        else //Validar Detalle
-                        {
-                            MessageBox.Show("Hay campos que son obligatorios que se encuentran vacios.", "Error de validación", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                        }
+
                     }
+                   
+
 
 
                 }
@@ -330,6 +333,14 @@ namespace INVENTARIO
                                     else
                                     {
                                         pro.RegMovimiento(entidades, entidadess);
+                                        if (Cb_Tipo.SelectedIndex==0)
+                                        {
+                                            pro.ActualizarCambio("Pendiente", Convert.ToInt16(txt_NoDocumento.Text));
+                                        }
+                                        else
+                                        {
+                                            pro.ActualizarCambio("Aprovado", Convert.ToInt16(txt_NoDocumento.Text));
+                                        }
                                     }
 
                                 }
@@ -339,16 +350,20 @@ namespace INVENTARIO
                             MessageBox.Show("Registro agregado con exito.", "Agregado", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
                             BtNuevo.PerformClick();
+                            return;
                         }
                     }
                 }
+                MessageBox.Show("Hay campos que son obligatorios que se encuentran vacios.", "Error de validación", MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
+                return;
             }
-                
 
-            catch (Exception)
+
+            catch (Exception ex)
             {
-                
-                throw;
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             }
@@ -423,6 +438,12 @@ namespace INVENTARIO
                         dt.Rows.Add(row);
                         dg_Detalle.DataSource = dt;
 
+                        double subtotal, neto, total;
+
+                        neto = double.Parse(Txt_Total.Text);
+                        subtotal = double.Parse(txt_cantidad.Text) * double.Parse(Txt_Precio.Text);
+                        total=neto+subtotal;
+                        Txt_Total.Text = total.ToString();
                     }
 
                 }
@@ -493,7 +514,11 @@ namespace INVENTARIO
 
             }
 
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void PaginarProductos()
@@ -571,10 +596,10 @@ namespace INVENTARIO
 
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -584,7 +609,11 @@ namespace INVENTARIO
         {
             int fila = DgConsulta.CurrentRow.Index;
 
-            ID = Convert.ToInt32(DgConsulta.Rows[fila].Cells["No. Doc"].Value.ToString());
+            if (DgConsulta.Rows.Count > 1)
+            {
+                ID = Convert.ToInt32(DgConsulta.Rows[fila].Cells["No. Doc"].Value.ToString());
+            }
+            else { return; }
             modificar = true;
 
             MovimientoBL pr = new MovimientoBL();
@@ -653,18 +682,38 @@ namespace INVENTARIO
 
             }
 
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void DgConsulta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DgConsulta.Tag.ToString()=="Producto")
+            if (Cb_Tipo.SelectedIndex == -1)
             {
-                PaginarProductos();
+                
+                tabControl1.SelectTab(0);
+                Cb_Tipo.Focus();
+                MessageBox.Show("!Selecciones un tipo de movimiento!", "¿Qué desea hacer?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cb_Tipo.DroppedDown = true;
+                return;
+                
             }
             else
-            PaginarTipo();
+            {
+                if (DgConsulta.Tag.ToString() == "Producto")
+                {
+                    PaginarProductos();
+                }
+                else
+                {
+                    PaginarTipo();
+                }
+            }
 
+        
         }
 
         private void BtModificar_Click(object sender, EventArgs e)
@@ -698,8 +747,7 @@ namespace INVENTARIO
 
                 actualizar.ActualizarMovimiento(entidad);
                 DgConsulta.Update();
-                int id_dt;
-
+               
                //id_dt= Convert.ToInt16(dg_Detalle.Rows[0].Cells["id_detalle"].Value.ToString());
                if (dg_Detalle.Rows.Count > 0)
                {
@@ -725,15 +773,17 @@ namespace INVENTARIO
 
         private void dg_Detalle_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           PaginarDetalle();
+            PaginarDetalle();
         }
 
         private void Cb_Tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             
             MovimientoBL pr = new MovimientoBL();
-            Txt_Responsable.Text = this.Tag.ToString();
-            if (Cb_Tipo.SelectedIndex == 0)
+            Txt_Responsable.Text = _usuario;
+            try
+            {
+                if (Cb_Tipo.SelectedIndex == 0)
             {
                 Gb_Estado.Visible = true;
                 Rb_Pendiente.Checked = true;
@@ -741,19 +791,22 @@ namespace INVENTARIO
                 Gb_detalle.Enabled = true;
                 DgConsulta.DataSource = pr.ObtenerTipo("Vtodascotizacion");
                 DgConsulta.Tag = "Cotizacion";
-                Lbl_Accion.Text = "U";
+                ObtenerNumero();
+                txt_NoDocumento.Text = Proximo.ToString();
                 return;
 
             }
 
             if (Cb_Tipo.SelectedIndex == 1)
             {
+                DgConsulta.Tag = "Orden";
                 Gb_Estado.Visible = true;
                 tabControl1.SelectTab(1);
+                Rb_Pendiente.Checked = true;
                 DgConsulta.DataSource = pr.ObtenerTipo("VCotizacion");
                 //Gb_Actividad.Enabled = true;
-                Gb_detalle.Enabled = false;
-                Gb_Estado.Enabled = true;
+                Gb_detalle.Enabled = true;
+                Gb_Estado.Enabled = false; 
                 Deshabilitar();
                 return;
 
@@ -761,13 +814,22 @@ namespace INVENTARIO
             if (Cb_Tipo.SelectedIndex == 2)
             {
                 Gb_Estado.Visible = false;
-                Gb_Estado.Enabled = true;
+                Gb_Estado.Enabled = false;
+                Rb_Aprobado.Checked = true;
+                DgConsulta.Tag = "Entrada";
                 tabControl1.SelectTab(1);
                 DgConsulta.DataSource = pr.ObtenerTipo("VOrden");
 
                 return;
 
             }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
 
         }
 
@@ -812,15 +874,15 @@ namespace INVENTARIO
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+      
 
-    
     }   
 
  }

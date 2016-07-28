@@ -59,6 +59,14 @@ namespace LOGICA
             ActualizacionEstado.ActualizarEstado(Cantidad, ID);
               
         }
+
+        public void ActualizarCambio(string estado, int id_mov)
+        {
+            MovimientoDAL ActualizacionEstado = new MovimientoDAL();
+
+            ActualizacionEstado.ActualizarCambio(estado, id_mov);
+
+        }
         public void EliminarMovimiento(Movimientos entidad)
         {
             MovimientoDAL EliminacionMovimiento = new MovimientoDAL();

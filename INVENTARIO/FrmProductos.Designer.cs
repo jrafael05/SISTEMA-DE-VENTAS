@@ -161,17 +161,21 @@
             // 
             this.TxtVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtVenta.Location = new System.Drawing.Point(207, 161);
+            this.TxtVenta.Mask = "99999";
             this.TxtVenta.Name = "TxtVenta";
             this.TxtVenta.Size = new System.Drawing.Size(136, 29);
-            this.TxtVenta.TabIndex = 9;
+            this.TxtVenta.TabIndex = 3;
+            this.TxtVenta.ValidatingType = typeof(int);
             // 
             // TxtCosto
             // 
             this.TxtCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCosto.Location = new System.Drawing.Point(207, 126);
+            this.TxtCosto.Mask = "99999";
             this.TxtCosto.Name = "TxtCosto";
             this.TxtCosto.Size = new System.Drawing.Size(136, 29);
-            this.TxtCosto.TabIndex = 8;
+            this.TxtCosto.TabIndex = 2;
+            this.TxtCosto.ValidatingType = typeof(int);
             // 
             // CmbProveedor
             // 
@@ -181,7 +185,7 @@
             this.CmbProveedor.Location = new System.Drawing.Point(207, 85);
             this.CmbProveedor.Name = "CmbProveedor";
             this.CmbProveedor.Size = new System.Drawing.Size(276, 32);
-            this.CmbProveedor.TabIndex = 7;
+            this.CmbProveedor.TabIndex = 1;
             this.CmbProveedor.DropDown += new System.EventHandler(this.CmbProveedor_DropDown);
             // 
             // TxtProducto
@@ -191,7 +195,7 @@
             this.TxtProducto.Location = new System.Drawing.Point(207, 50);
             this.TxtProducto.Name = "TxtProducto";
             this.TxtProducto.Size = new System.Drawing.Size(381, 29);
-            this.TxtProducto.TabIndex = 6;
+            this.TxtProducto.TabIndex = 0;
             // 
             // label4
             // 

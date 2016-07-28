@@ -40,10 +40,10 @@ namespace INVENTARIO
                 TxtProducto.Focus();
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private static FrmProductos frmInstance = null;
@@ -71,10 +71,10 @@ namespace INVENTARIO
                 LlenarGrid();
                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -139,10 +139,10 @@ namespace INVENTARIO
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -170,23 +170,33 @@ namespace INVENTARIO
             {
                 LlenarCombo();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtModificar_Click(object sender, EventArgs e)
         {
-            Productos entidad = new Productos();
+            try
+            {
+                 Productos entidad = new Productos();
             ProductosBL actualizar = new ProductosBL();
 
+            if (string.IsNullOrWhiteSpace(TxCodigo.Text))
+            {
+                MessageBox.Show("Debe seleccionar un registro valido antes de actualizar." +
+                " Por favor seleccione un registro en la pestaña de busqueda que desea actualizar "
+                  + "y vuelva a intentarlo.", "Error de Actualización",
+                  MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             if (ID < 1)
             {
                 MessageBox.Show("Debe seleccionar un registro valido antes de actualizar." +
                 " Por favor seleccione un registro en la pestaña de busqueda que desea actualizar "
-                  + "y vuelva a intentarlo.", "Error de eliminación",
+                  + "y vuelva a intentarlo.", "Error de Actualización",
                   MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             else
@@ -198,7 +208,7 @@ namespace INVENTARIO
                 entidad.COSTO = Convert.ToDecimal(TxtCosto.Text);
                 entidad.PRECIO = Convert.ToDecimal(TxtVenta.Text);
 
-               
+
 
                 actualizar.ActualizarProductos(entidad);
                 LlenarGrid();
@@ -206,7 +216,12 @@ namespace INVENTARIO
                 MessageBoxIcon.Information);
                 BtNuevo.PerformClick();
             }
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -224,10 +239,10 @@ namespace INVENTARIO
                     DgConsulta.DataSource = busqueda.BusquedaProdusctos(TxtBuscar.Text, "DESC_PRODUCTO");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -253,7 +268,11 @@ namespace INVENTARIO
                 
             }
 
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
      
@@ -296,16 +315,24 @@ namespace INVENTARIO
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void tabProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LlenarGrid();
+            try
+            {
+                LlenarGrid();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

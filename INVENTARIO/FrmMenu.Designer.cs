@@ -157,7 +157,6 @@
             this.lb_Estatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_Estatus.Name = "lb_Estatus";
             this.lb_Estatus.Size = new System.Drawing.Size(0, 17);
-            //this.lb_Estatus.TextChanged += new System.EventHandler(this.lb_Estatus_TextChanged);
             // 
             // Trm_mensaje
             // 
@@ -180,8 +179,9 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FrmMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form 1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMenu_FormClosing);
             this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

@@ -43,8 +43,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Realiza_Pedidos = new System.Windows.Forms.TabPage();
             this.Gb_detalle = new System.Windows.Forms.GroupBox();
+            this.Lbl_Accion = new System.Windows.Forms.Label();
             this.BtBuscarp = new System.Windows.Forms.Button();
-            this.Bt_Agregarpro = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.Txt_Precio = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -83,7 +83,6 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Lbl_Accion = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Realiza_Pedidos.SuspendLayout();
@@ -142,7 +141,7 @@
             this.BtGuardar.Name = "BtGuardar";
             this.BtGuardar.Size = new System.Drawing.Size(36, 36);
             this.BtGuardar.Text = "toolStripButton2";
-            this.BtGuardar.ToolTipText = "Guardar";
+            this.BtGuardar.ToolTipText = "Guardar Registros";
             this.BtGuardar.Click += new System.EventHandler(this.BtGuardar_Click);
             // 
             // toolStripSeparator3
@@ -158,7 +157,7 @@
             this.BtModificar.Name = "BtModificar";
             this.BtModificar.Size = new System.Drawing.Size(36, 36);
             this.BtModificar.Text = "toolStripButton3";
-            this.BtModificar.ToolTipText = "Modificar";
+            this.BtModificar.ToolTipText = "Modificar Registros";
             this.BtModificar.Click += new System.EventHandler(this.BtModificar_Click);
             // 
             // toolStripSeparator2
@@ -174,7 +173,7 @@
             this.BnEliminar.Name = "BnEliminar";
             this.BnEliminar.Size = new System.Drawing.Size(36, 36);
             this.BnEliminar.Text = "toolStripButton4";
-            this.BnEliminar.ToolTipText = "Eliminar";
+            this.BnEliminar.ToolTipText = "Eliminar Registros";
             this.BnEliminar.Click += new System.EventHandler(this.BnEliminar_Click);
             // 
             // toolStripSeparator1
@@ -190,7 +189,7 @@
             this.BtSalir.Name = "BtSalir";
             this.BtSalir.Size = new System.Drawing.Size(36, 36);
             this.BtSalir.Text = "toolStripButton5";
-            this.BtSalir.ToolTipText = "Salir";
+            this.BtSalir.ToolTipText = "Salir del Formulario";
             this.BtSalir.Click += new System.EventHandler(this.BtSalir_Click);
             // 
             // tabControl1
@@ -225,7 +224,6 @@
             // 
             this.Gb_detalle.Controls.Add(this.Lbl_Accion);
             this.Gb_detalle.Controls.Add(this.BtBuscarp);
-            this.Gb_detalle.Controls.Add(this.Bt_Agregarpro);
             this.Gb_detalle.Controls.Add(this.label9);
             this.Gb_detalle.Controls.Add(this.Txt_Precio);
             this.Gb_detalle.Controls.Add(this.label1);
@@ -241,6 +239,15 @@
             this.Gb_detalle.TabStop = false;
             this.Gb_detalle.Text = "Detalle de la Actividad";
             // 
+            // Lbl_Accion
+            // 
+            this.Lbl_Accion.AutoSize = true;
+            this.Lbl_Accion.Location = new System.Drawing.Point(348, 99);
+            this.Lbl_Accion.Name = "Lbl_Accion";
+            this.Lbl_Accion.Size = new System.Drawing.Size(0, 16);
+            this.Lbl_Accion.TabIndex = 150;
+            this.Lbl_Accion.Visible = false;
+            // 
             // BtBuscarp
             // 
             this.BtBuscarp.BackgroundImage = global::INVENTARIO.Properties.Resources.buscar;
@@ -252,18 +259,6 @@
             this.toolTip1.SetToolTip(this.BtBuscarp, "Buscar productos");
             this.BtBuscarp.UseVisualStyleBackColor = true;
             this.BtBuscarp.Click += new System.EventHandler(this.BtBuscarp_Click);
-            // 
-            // Bt_Agregarpro
-            // 
-            this.Bt_Agregarpro.BackgroundImage = global::INVENTARIO.Properties.Resources.button_plus_green;
-            this.Bt_Agregarpro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Bt_Agregarpro.Location = new System.Drawing.Point(262, 21);
-            this.Bt_Agregarpro.Name = "Bt_Agregarpro";
-            this.Bt_Agregarpro.Size = new System.Drawing.Size(53, 37);
-            this.Bt_Agregarpro.TabIndex = 146;
-            this.Bt_Agregarpro.Text = "+";
-            this.toolTip1.SetToolTip(this.Bt_Agregarpro, "Agregar Productos");
-            this.Bt_Agregarpro.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -281,6 +276,7 @@
             this.Txt_Precio.Location = new System.Drawing.Point(90, 162);
             this.Txt_Precio.Mask = "99999";
             this.Txt_Precio.Name = "Txt_Precio";
+            this.Txt_Precio.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Txt_Precio.Size = new System.Drawing.Size(87, 22);
             this.Txt_Precio.TabIndex = 3;
             this.Txt_Precio.ValidatingType = typeof(int);
@@ -312,6 +308,7 @@
             this.txt_Codigo.Location = new System.Drawing.Point(90, 24);
             this.txt_Codigo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Codigo.Name = "txt_Codigo";
+            this.txt_Codigo.ReadOnly = true;
             this.txt_Codigo.Size = new System.Drawing.Size(82, 22);
             this.txt_Codigo.TabIndex = 0;
             this.txt_Codigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -321,6 +318,7 @@
             this.Txt_Productos.Location = new System.Drawing.Point(90, 74);
             this.Txt_Productos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Txt_Productos.Name = "Txt_Productos";
+            this.Txt_Productos.ReadOnly = true;
             this.Txt_Productos.Size = new System.Drawing.Size(317, 22);
             this.Txt_Productos.TabIndex = 1;
             this.Txt_Productos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -457,10 +455,10 @@
             this.Rb_Aprobado.AutoSize = true;
             this.Rb_Aprobado.Location = new System.Drawing.Point(11, 21);
             this.Rb_Aprobado.Name = "Rb_Aprobado";
-            this.Rb_Aprobado.Size = new System.Drawing.Size(94, 20);
+            this.Rb_Aprobado.Size = new System.Drawing.Size(95, 20);
             this.Rb_Aprobado.TabIndex = 158;
             this.Rb_Aprobado.TabStop = true;
-            this.Rb_Aprobado.Text = "Aprovado";
+            this.Rb_Aprobado.Text = "Aprobado";
             this.Rb_Aprobado.UseVisualStyleBackColor = true;
             // 
             // CmbProveedor
@@ -567,6 +565,7 @@
             this.txt_NoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_NoDocumento.Location = new System.Drawing.Point(125, 30);
             this.txt_NoDocumento.Name = "txt_NoDocumento";
+            this.txt_NoDocumento.ReadOnly = true;
             this.txt_NoDocumento.Size = new System.Drawing.Size(90, 21);
             this.txt_NoDocumento.TabIndex = 1;
             // 
@@ -677,15 +676,6 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Buscar";
             // 
-            // Lbl_Accion
-            // 
-            this.Lbl_Accion.AutoSize = true;
-            this.Lbl_Accion.Location = new System.Drawing.Point(348, 99);
-            this.Lbl_Accion.Name = "Lbl_Accion";
-            this.Lbl_Accion.Size = new System.Drawing.Size(0, 16);
-            this.Lbl_Accion.TabIndex = 150;
-            this.Lbl_Accion.Visible = false;
-            // 
             // FrmMovimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -696,7 +686,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "FrmMovimiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Admin";
+            this.Tag = "";
             this.Text = "Movimientos";
             this.Load += new System.EventHandler(this.FrmCotizacion_Load);
             this.toolStrip1.ResumeLayout(false);
@@ -765,7 +755,6 @@
         private System.Windows.Forms.ComboBox Cb_Tipo;
         private System.Windows.Forms.GroupBox Gb_detalle;
         private System.Windows.Forms.Button BtBuscarp;
-        private System.Windows.Forms.Button Bt_Agregarpro;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.MaskedTextBox Txt_Precio;
         private System.Windows.Forms.Label label8;

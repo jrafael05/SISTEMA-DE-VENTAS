@@ -72,6 +72,8 @@ namespace INVENTARIO
                 // Asignamos el texto que se mostrar
                 //
                 menuItem.Text = Convert.ToString(row["Nombre"]);
+                menuItem.ForeColor = Color.WhiteSmoke;
+                
 
                 // Instalamos el controlador para el evento Click.
 
@@ -91,6 +93,7 @@ namespace INVENTARIO
                 {
                     ToolStripMenuItem subItem = new ToolStripMenuItem();
                     subItem.Text = Convert.ToString(r["Nombre"]);
+                    subItem.ForeColor = Color.RoyalBlue;
 
                     // Controlador para el evento Click.
                     //
@@ -155,11 +158,57 @@ namespace INVENTARIO
 
                  FrmMovimiento llamar = null;
 
-                 llamar = FrmMovimiento.Instance();
+                 llamar = FrmMovimiento.Instance(_user);
                  llamar.MdiParent = this;
                  llamar.Show();
 
              }
+             if (item.ToString() == "Rep_Producto")
+             {
+                 //FrmVisorReporte frm = new FrmVisorReporte("Productos");
+
+                 FrmVisorReporte llamar = null;
+                 llamar = FrmVisorReporte.Instance("Productos");
+                 llamar.MdiParent = this;
+                 llamar.WindowState = FormWindowState.Maximized;
+                 llamar.Show();
+
+             }
+
+             if (item.ToString() == "Rep_Cotizacion")
+             {
+
+                 FrmVisorReporte llamar = null;
+                 llamar = FrmVisorReporte.Instance("Cotizacion");
+                 llamar.MdiParent = this;
+                 llamar.WindowState = FormWindowState.Maximized;
+                 llamar.Show();
+
+             }
+             if (item.ToString() == "Rep_Orden de compra")
+             {
+
+                 FrmVisorReporte llamar = null;
+                 llamar = FrmVisorReporte.Instance("Orden");
+                 llamar.MdiParent = this;
+                 llamar.WindowState = FormWindowState.Maximized;
+                 llamar.Show();
+
+             }
+             if (item.ToString() == "Rep_Entrada")
+             {
+
+                 FrmVisorReporte llamar = null;
+                 llamar = FrmVisorReporte.Instance("Entrada");
+                 llamar.MdiParent = this;
+                 llamar.WindowState = FormWindowState.Maximized;
+                 llamar.Show();
+
+             }
+
+
+
+
 
              else
              {
@@ -199,9 +248,9 @@ namespace INVENTARIO
         private void tb_Movimientos_Click(object sender, EventArgs e)
         {
             FrmMovimiento llamar = null;
-            
-            llamar = FrmMovimiento.Instance();
-            llamar.Tag = _user;
+
+            llamar = FrmMovimiento.Instance(_user);
+            //llamar.Tag = _user;
             llamar.MdiParent = this;
             llamar.Show();
         }
@@ -210,15 +259,30 @@ namespace INVENTARIO
         {
             try
             {
-                System.Diagnostics.Process.Start(@"C:\Users\Mabel\Desktop\proyecto final modulo 3\programa\SISTEMA DE VENTAS\INVENTARIO\Ayuda\Manual del Sistema.docx");
+                System.Diagnostics.Process.Start(Application.StartupPath+"\\Ayuda\\Manual del Sistema.PDF");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-      
+        private void FrmMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Realmente desea cerrar la aplicación?",
+                                      "¿Desea cerrar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (resultado == DialogResult.Yes)
+            {
+
+                //Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
         }
     }

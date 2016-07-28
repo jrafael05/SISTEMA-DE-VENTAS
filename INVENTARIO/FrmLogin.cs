@@ -30,17 +30,14 @@ namespace INVENTARIO
                 CbUsuario.DataSource = ds.usuario_t;
                 CbUsuario.DisplayMember = "usuario";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void Cancelar_Click(object sender, EventArgs e)
         {
@@ -68,6 +65,7 @@ namespace INVENTARIO
                     //NOMBRE DEL FORMULARIO DE USTEDES, 
                     //SINO TENDRAN ERROR EN ESTA LINEA
                     FrmMenu menu = new FrmMenu(CbUsuario.Text);
+                    menu.WindowState = FormWindowState.Maximized;
                     menu.ShowDialog();
                     Application.Exit();
                 }
@@ -78,9 +76,10 @@ namespace INVENTARIO
                     TxtClave.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -94,10 +93,10 @@ namespace INVENTARIO
                     TxtClave.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -111,10 +110,10 @@ namespace INVENTARIO
                     Aceptar.PerformClick();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                MessageBox.Show(ex.Message, "A Ocurrido un Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

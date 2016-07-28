@@ -29,7 +29,7 @@ namespace DATOS
     
         public DataTable ObtenerDetalleMovimiento()
         {
-            string query = "Select * From detalle_movimiento";
+            string query = "Select * From VMovimiento";
             using (AdaptadorSQL = new SqlDataAdapter(query, AccesoDatos.ObtenerConexion()))
             {
                 Dt = new DataTable();

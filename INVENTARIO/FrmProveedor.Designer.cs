@@ -100,7 +100,7 @@
             this.BtNuevo.Name = "BtNuevo";
             this.BtNuevo.Size = new System.Drawing.Size(36, 36);
             this.BtNuevo.Text = "toolStripButton1";
-            this.BtNuevo.ToolTipText = "Nuevo";
+            this.BtNuevo.ToolTipText = "Nuevo ";
             this.BtNuevo.Click += new System.EventHandler(this.BtNuevo_Click);
             // 
             // toolStripSeparator4
@@ -116,7 +116,7 @@
             this.BtGuardar.Name = "BtGuardar";
             this.BtGuardar.Size = new System.Drawing.Size(36, 36);
             this.BtGuardar.Text = "toolStripButton2";
-            this.BtGuardar.ToolTipText = "Guardar";
+            this.BtGuardar.ToolTipText = "Guardar Registros";
             this.BtGuardar.Click += new System.EventHandler(this.BtGuardar_Click);
             // 
             // toolStripSeparator3
@@ -132,7 +132,7 @@
             this.BtModificar.Name = "BtModificar";
             this.BtModificar.Size = new System.Drawing.Size(36, 36);
             this.BtModificar.Text = "toolStripButton3";
-            this.BtModificar.ToolTipText = "Modificar";
+            this.BtModificar.ToolTipText = "Modificar Registros";
             this.BtModificar.Click += new System.EventHandler(this.BtModificar_Click);
             // 
             // toolStripSeparator2
@@ -148,7 +148,7 @@
             this.BnEliminar.Name = "BnEliminar";
             this.BnEliminar.Size = new System.Drawing.Size(36, 36);
             this.BnEliminar.Text = "toolStripButton4";
-            this.BnEliminar.ToolTipText = "Eliminar";
+            this.BnEliminar.ToolTipText = "Eliminar Registros";
             this.BnEliminar.Click += new System.EventHandler(this.BnEliminar_Click);
             // 
             // toolStripSeparator1
@@ -164,7 +164,7 @@
             this.BtSalir.Name = "BtSalir";
             this.BtSalir.Size = new System.Drawing.Size(36, 36);
             this.BtSalir.Text = "toolStripButton5";
-            this.BtSalir.ToolTipText = "Salir";
+            this.BtSalir.ToolTipText = "Salir del Formulario";
             this.BtSalir.Click += new System.EventHandler(this.BtSalir_Click);
             // 
             // tabProveedor
@@ -212,11 +212,12 @@
             // 
             // TxtMemo
             // 
+            this.TxtMemo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtMemo.Location = new System.Drawing.Point(125, 234);
             this.TxtMemo.Multiline = true;
             this.TxtMemo.Name = "TxtMemo";
             this.TxtMemo.Size = new System.Drawing.Size(382, 55);
-            this.TxtMemo.TabIndex = 19;
+            this.TxtMemo.TabIndex = 7;
             // 
             // label9
             // 
@@ -229,10 +230,11 @@
             // 
             // TxtDireccion
             // 
+            this.TxtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtDireccion.Location = new System.Drawing.Point(126, 198);
             this.TxtDireccion.Name = "TxtDireccion";
             this.TxtDireccion.Size = new System.Drawing.Size(381, 29);
-            this.TxtDireccion.TabIndex = 17;
+            this.TxtDireccion.TabIndex = 5;
             // 
             // label8
             // 
@@ -245,10 +247,11 @@
             // 
             // TxtEmail
             // 
+            this.TxtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtEmail.Location = new System.Drawing.Point(125, 163);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(381, 29);
-            this.TxtEmail.TabIndex = 15;
+            this.TxtEmail.TabIndex = 4;
             // 
             // label7
             // 
@@ -261,10 +264,11 @@
             // 
             // TxtContacto
             // 
+            this.TxtContacto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtContacto.Location = new System.Drawing.Point(125, 85);
             this.TxtContacto.Name = "TxtContacto";
             this.TxtContacto.Size = new System.Drawing.Size(381, 29);
-            this.TxtContacto.TabIndex = 13;
+            this.TxtContacto.TabIndex = 1;
             // 
             // pictureBox1
             // 
@@ -299,25 +303,28 @@
             // 
             this.TxtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtTelefono.Location = new System.Drawing.Point(125, 120);
+            this.TxtTelefono.Mask = "(999)000-0000";
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(136, 29);
-            this.TxtTelefono.TabIndex = 9;
+            this.TxtTelefono.TabIndex = 2;
             // 
             // TxtFax
             // 
             this.TxtFax.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFax.Location = new System.Drawing.Point(324, 119);
+            this.TxtFax.Mask = "(999)000-0000";
             this.TxtFax.Name = "TxtFax";
             this.TxtFax.Size = new System.Drawing.Size(182, 29);
-            this.TxtFax.TabIndex = 8;
+            this.TxtFax.TabIndex = 3;
             // 
             // TxtNombre
             // 
+            this.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.Location = new System.Drawing.Point(125, 52);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(381, 29);
-            this.TxtNombre.TabIndex = 6;
+            this.TxtNombre.TabIndex = 0;
             // 
             // label4
             // 

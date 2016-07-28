@@ -15,7 +15,7 @@ namespace INVENTARIO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMovimiento());
+            Application.Run(new FrmLogin());
         }
     }
 }

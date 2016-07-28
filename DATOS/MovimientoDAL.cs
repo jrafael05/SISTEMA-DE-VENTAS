@@ -215,6 +215,34 @@ namespace DATOS
             }
 
         }
+        public void ActualizarCambio(string estado, int id_mov)
+        {
+            AccesoDatos.ObtenerConexion().Open();
+            using (ComandoSQL = new SqlCommand())
+            {
+                ComandoSQL.Connection = AccesoDatos.ObtenerConexion();
+                ComandoSQL.CommandType = CommandType.StoredProcedure;
+                ComandoSQL.CommandText = "proc_ActualizarEstado";
+                try
+                {
+                    ComandoSQL.Parameters.AddWithValue("@id_mov", id_mov);
+                    ComandoSQL.Parameters.AddWithValue("@estado", estado);
+
+                    //Ejecutar Comando
+                    ComandoSQL.ExecuteNonQuery();
+                }
+                catch (Exception)
+                {
+                    throw;
+
+                }
+                finally
+                {
+                    AccesoDatos.ObtenerConexion().Close();
+                }
+            }
+
+        }
      
     }
 }
